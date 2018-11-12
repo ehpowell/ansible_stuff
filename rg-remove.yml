@@ -7,3 +7,4 @@
       azure_rm_resourcegroup:
         name: table2ehpansibletest
         state: absent
+        force: true
