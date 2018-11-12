@@ -6,3 +6,4 @@
       azure_rm_resourcegroup:
         name: table2ehpdevopsrg
         state: absent
+        force: true
