@@ -1,9 +1,8 @@
-
 ---
 - hosts: localhost
   connection: local
   tasks:
     - name: Remove a resource
       azure_rm_resourcegroup:
-        name: table2ehpansibletest
+        name: table2ehpdevopsrg
         state: absent
