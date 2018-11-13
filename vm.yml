@@ -1,6 +1,8 @@
 - name: Create  VM
   hosts: localhost
   connection: local
+  vars_files:
+  - vars.yml
   tasks:
   - name: Create resource group
     azure_rm_resourcegroup:
@@ -30,8 +32,7 @@
           direction: Inbound
   - include_tasks: vm_details.yml
     loop:
-     -{ name: 'one', tag: 'nginx' }
-	   -{ name: 'two', tag: 'apache' }
-	  loop_control:
-      loop_var: vm	
-	   
+     - { name: 'one' , tag: 'nginx' }
+     - { name: 'two' , tag: 'apache' }
+    loop_control:
+      loop_var: vm   

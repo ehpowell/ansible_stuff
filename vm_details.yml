@@ -7,6 +7,11 @@
   - name: Output public IP 
     debug:
       msg: "Public IP is {{ output_ip_address.state.ip_address }}."
+  - name: Add Host
+    add_host:
+       name: "{{output_ip_address.state.ip_address }}."
+       groups: 
+         only_one
   - name: Create virtual network inteface card
     azure_rm_networkinterface:
       resource_group: "{{ group_name }}"
@@ -32,5 +37,5 @@
         publisher: Canonical
         sku: '16.04-LTS'
         version: latest
-	  tags:
-        machine_role: "{{ vm.tag }}"
+        tags:
+          machine_role: "{{ vm.tag }}"
