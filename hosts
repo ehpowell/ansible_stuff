@@ -1,4 +1,6 @@
 host1 ansible_host=13.71.167.115  ansible_user=azureops	
 host2 ansible_host=40.124.5.84 ansible_user=azureops
+host3 ansible_host=40.85.207.69 ansible_user=azureops
 [web]
 host1
+host3
