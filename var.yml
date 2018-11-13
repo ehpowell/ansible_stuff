@@ -1,5 +1,5 @@
 prefix: table2ehpdevops
-group_name: "{{prefix}}vmrg"
+group_name: "{{prefix}}rg"
 vnet: "{{prefix}}vnet"
 nsg_name: "{{prefix}}secgroup"
 subnet_name: "{{prefix}}subnet"
