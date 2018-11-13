@@ -1,0 +1,34 @@
+- hosts: localhost
+  connection: local
+  vars:
+    group: table2ehpdevopsvmvrg
+    webapp_name: table2ehpdevopswebapp
+    location: canadacentral
+  tasks:
+    - name: create rg
+      azure_rm_resourcegroup:
+        name: "{{group}}"
+        location: "{{location}}"
+    - name: Create App Svc
+      azure_rm_webapp:
+        resource_group: "{{group}}"
+        name: "{{webapp_name}}"
+        plan:
+          resource_group: "{{group}}"
+          name: table2ehpdevopsappplan
+          is_linux: true
+          sku: S1
+          number_of_workers: 1
+        scm_type: GitHub
+        deployment_source:
+          url: https://github.com/jwkidd3/slots
+          branch: master
+		  
+		  
+		  table2ehpdevopsvmone    13.71.167.115        10.0.1.4
+table2ehpdevopsvmthree  40.85.203.39         10.0.1.6
+table2ehpdevopsvmtwo    13.88.238.139        10.0.1.5
+
+table2ehpdevopsvmone    13.71.167.115        10.0.1.4
+table2ehpdevopsvmthree  40.85.203.39         10.0.1.6
+table2ehpdevopsvmtwo    13.88.238.139        10.0.1.5

@@ -1,0 +1,37 @@
+- name: Create  VM
+  hosts: localhost
+  connection: local
+  tasks:
+  - name: Create resource group
+    azure_rm_resourcegroup:
+      name: "{{ group_name }}"
+      location: canadacentral
+  - name: Create virtual network
+    azure_rm_virtualnetwork:
+      resource_group: "{{ group_name }}"
+      name: "{{ vnet }}"
+      address_prefixes: "10.0.0.0/16"
+  - name: Create Subnet
+    azure_rm_subnet:
+      resource_group: "{{ group_name }}"
+      name: "{{ subnet_name }}"
+      address_prefix: "10.0.1.0/24"
+      virtual_network: "{{ vnet }}"
+  - name: Create Network Security Group that allows SSH
+    azure_rm_securitygroup:
+      resource_group: "{{ group_name }}"
+      name: "{{ nsg_name }}"
+      rules:
+        - name: SSH
+          protocol: Tcp
+          destination_port_range: 22
+          access: Allow
+          priority: 1001
+          direction: Inbound
+  - include_tasks: vm_details.yml
+    loop:
+       -{ name: 'one', tag: 'nginx' }
+	   -{ name: 'two', tag: 'apache' }
+	loop_control:
+      lop_var: vm	
+	   
