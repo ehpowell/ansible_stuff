@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+  gather_facts: yes
+  connection: local
+  tasks:
+    - name: Arm Deploy
+      azure_rm_deployment:
+        state: present
+        location: canadacentral
+        resource_group_name: Table2ehpdevopsrg1114b
+        template_link: 'https://raw.githubusercontent.com/ehpowell/azureARMNov2018/master/template.json'
+        parameters_link: 'https://raw.githubusercontent.com/ehpowell/azureARMNov2018/master/parameters.json'
